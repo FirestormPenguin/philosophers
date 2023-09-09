@@ -1,4 +1,4 @@
-#include "./philo.h"
+#include "../include/philo.h"
 
 int parse_arg(t_data *data, int argc, char **argv)
 {
@@ -39,9 +39,16 @@ int main(int argc, char **argv)
     t_data data;
 
     if (argc <= 4 || argc > 6)
+    {
+        printf("%s\n", INPUT_ERR_3);
         return (1);
-    if (parse_arg(&data, argc, argv))
+    }
+    else if (parse_arg(&data, argc, argv))
+    {
+        printf("%s\n", INPUT_ERR_1);
         return (1);
-    data_debug(&data);
+    }
+    else
+        data_debug(&data);
     return (0);
 }
