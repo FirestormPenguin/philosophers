@@ -62,7 +62,10 @@ typedef struct s_philo
 
 /*		TIME		*/
 u_int64_t			ft_gettimeofday(void);
-int					ft_usleep(useconds_t time)
+int					ft_usleep(useconds_t time);
+
+/*		INPUT		*/
+int 				parse_arg(t_data *data, int argc, char **argv);
 
 /*		OTHER		*/
 #endif
