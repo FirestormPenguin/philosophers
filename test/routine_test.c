@@ -1,7 +1,7 @@
 #include <pthread.h>
 #include <stdio.h>
 #include <unistd.h>
-#include <stdlib.h> 
+#include <stdlib.h>
 
 pthread_mutex_t lock;
 int time_to_eat;
@@ -13,6 +13,7 @@ typedef struct s_philos
 	int eat;
 	int think;
 	int live;
+	pthread_t thread;
 	struct s_philos *next;
 }	t_philos;
 
@@ -65,6 +66,7 @@ t_philos	*init_struct(t_data *data)
 
 void  *routine(t_philos *philos)
 {
+	printf("enter routine %d\n", philos->id);
 	while (philos->live == 1)
 	{
 		pthread_mutex_lock(&lock);
@@ -78,13 +80,11 @@ void  *routine(t_philos *philos)
 
 void scroll_philos(t_philos *philos)
 {
-	pthread_t phil1, phil2, phil3, phil4, phil5;
-
 	while (philos)
 	{
 		//printf("philo id: %d\nsleep: %d\neat: %d\nthink: %d\nlive: %d\n\n", philos->id, philos->sleep, philos->eat, philos->think, philos->live);
-		pthread_create(&phil1, NULL, &routine, &philos);
-		pthread_join(phil1, NULL);
+		pthread_create(&philos->thread, NULL, &routine, philos);
+		pthread_join(philos->thread, NULL);
 		philos = philos->next;
 	}
 }
