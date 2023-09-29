@@ -85,7 +85,6 @@ void scroll_philos(t_data *data)
 		//pthread_create(&data->philos->thread, NULL, &routine, data);
 		//pthread_detach(&data->philos->thread);
 		data->philos = data->philos->next;
-		printf("philo next %d", data->philos->next->id);
 	}
 }
 
