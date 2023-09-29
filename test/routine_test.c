@@ -3,9 +3,6 @@
 #include <unistd.h>
 #include <stdlib.h>
 
-pthread_mutex_t lock;
-int time_to_eat;
-
 typedef struct s_philos
 {
 	int id;
@@ -20,80 +17,91 @@ typedef struct s_philos
 typedef struct s_data
 {
 	int philos_nb;
+	int time_to_eat;
+	t_philos *philos;
+	t_philos *philos_h;
+	pthread_mutex_t lock;
 }	t_data;
 
-t_philos	*ft_lstnew(int id)
+t_philos	*ft_lstnew(int id, t_data *data)
 {
-	t_philos *philos;
-
-	philos = NULL;
-	philos = malloc(sizeof(t_philos));
-	if (!philos)
+	data->philos = NULL;
+	data->philos = malloc(sizeof(t_philos));
+	if (!data->philos)
 		return (0);
-	philos->id = id;
-	philos->sleep = 0;
-	philos->eat = 0;
-	philos->think = 0;
-	philos->live = 1;
-	philos->next = NULL;
-	return (philos);
+	data->philos->id = id;
+	data->philos->sleep = 0;
+	data->philos->eat = 0;
+	data->philos->think = 0;
+	data->philos->live = 1;
+	data->philos->next = NULL;
+	return (data->philos);
 }
 
-t_philos	*init_struct(t_data *data)
+void	*init_struct(t_data *data)
 {
-	t_philos *philos_h;
-	t_philos *philos;
 	int i;
 
 	i = 0;
-	philos_h = NULL;
+	data->philos_h = NULL;
 	while(i < data->philos_nb)
 	{
 		if (i == 0)
 		{
-			philos = ft_lstnew(i);
-			philos_h = philos;
+			data->philos = ft_lstnew(i, data);
+			data->philos_h = data->philos;
+			data->philos = data->philos->next;
 		}
-		else 
+		else
 		{
-			philos->next = ft_lstnew(i);
-			philos = philos->next;
+			data->philos = ft_lstnew(i, data);
+			data->philos = data->philos->next;
 		}
 		i++;
 	}
-	return(philos_h);
 }
 
-void  *routine(t_philos *philos)
+void  *routine(t_data *data)
 {
-	printf("enter routine %d\n", philos->id);
-	while (philos->live == 1)
+	printf("enter routine %d\n", data->philos->id);
+	while (data->philos->live == 1)
 	{
-		pthread_mutex_lock(&lock);
-		philos->eat = 1;
-		printf("philo %d is eating\n", philos->id);
-		sleep(time_to_eat);
-		pthread_mutex_unlock(&lock);
+		pthread_mutex_lock(&data->lock);
+		data->philos->eat = 1;
+		printf("philo %d is eating\n", data->philos->id);
+		sleep(data->time_to_eat);
+		pthread_mutex_unlock(&data->lock);
+		sleep(data->time_to_eat);
 	}
 	return (NULL);
 }
 
-void scroll_philos(t_philos *philos)
+void scroll_philos(t_data *data)
 {
-	while (philos)
+	data->philos = data->philos_h;
+	while (data->philos)
 	{
-		//printf("philo id: %d\nsleep: %d\neat: %d\nthink: %d\nlive: %d\n\n", philos->id, philos->sleep, philos->eat, philos->think, philos->live);
-		pthread_create(&philos->thread, NULL, &routine, philos);
-		pthread_join(philos->thread, NULL);
-		philos = philos->next;
+		printf("philo id: %d\nsleep: %d\neat: %d\nthink: %d\nlive: %d\n\n", data->philos->id, data->philos->sleep, data->philos->eat, data->philos->think, data->philos->live);
+		//pthread_create(&data->philos->thread, NULL, &routine, data);
+		//pthread_detach(&data->philos->thread);
+		data->philos = data->philos->next;
+		printf("philo next %d", data->philos->next->id);
+	}
+}
+
+void scroll_philos2(t_data *data)
+{
+	data->philos = data->philos_h;
+	while (data->philos)
+	{
+		pthread_join(data->philos->thread, NULL);
+		data->philos = data->philos->next;
 	}
 }
 
 int main(int argc, char **argv)
 {
-	t_philos *philos_h;
-	t_data	data;
-	pthread_t phil1, phil2, phil3, phil4, phil5;
+	t_data		data;
 
 	if (argc != 3)
 	{
@@ -101,9 +109,10 @@ int main(int argc, char **argv)
 		return (1);
 	}
 	data.philos_nb = atoi(argv[1]);
-	time_to_eat = atoi(argv[2]);
-	philos_h = init_struct(&data);
-	pthread_mutex_init(&lock, NULL);
-	scroll_philos(philos_h);
-	pthread_mutex_destroy(&lock);
+	data.time_to_eat = atoi(argv[2]);
+	init_struct(&data);
+	pthread_mutex_init(&data.lock, NULL);
+	scroll_philos(&data);
+	//scroll_philos2(&data);
+	pthread_mutex_destroy(&data.lock);
 }
