@@ -23,19 +23,19 @@ typedef struct s_data
 	pthread_mutex_t lock;
 }	t_data;
 
-t_data	*ft_lstnew(int id, t_data *data)
+t_philos	*ft_lstnew(int id, t_philos *philos)
 {
-	data->philos = NULL;
-	data->philos = malloc(sizeof(t_philos));
-	if (!data->philos)
+	philos = NULL;
+	philos = malloc(sizeof(t_philos));
+	if (!philos)
 		return (0);
-	data->philos->id = id;
-	data->philos->sleep = 0;
-	data->philos->eat = 0;
-	data->philos->think = 0;
-	data->philos->live = 1;
-	data->philos->next = NULL;
-	return (data->philos);
+	philos->id = id;
+	philos->sleep = 0;
+	philos->eat = 0;
+	philos->think = 0;
+	philos->live = 1;
+	philos->next = NULL;
+	return (philos);
 }
 
 void	*init_struct(t_data *data)
@@ -48,13 +48,12 @@ void	*init_struct(t_data *data)
 	{
 		if (i == 0)
 		{
-			data->philos = ft_lstnew(i, data);
+			data->philos = ft_lstnew(i, data->philos);
 			data->philos_h = data->philos;
-			data->philos = data->philos->next;
 		}
 		else
 		{
-			data->philos = ft_lstnew(i, data);
+			data->philos->next = ft_lstnew(i, data->philos);
 			data->philos = data->philos->next;
 		}
 		i++;
