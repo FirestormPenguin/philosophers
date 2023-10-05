@@ -1,7 +1,11 @@
-#include <pthread.h>
-#include <stdio.h>
-#include <unistd.h>
-#include <stdlib.h>
+# include <stdio.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <pthread.h>
+# include <sys/time.h>
+# include <sys/types.h>
+# include <stdbool.h>
+# include <stdint.h>
 
 typedef struct s_philos
 {
@@ -24,7 +28,7 @@ typedef struct s_data
 	t_philos *philos_h;
 	pthread_mutex_t lock;
 	int dead;
-	int cont;
+	pthread_attr_t attr;
 }	t_data;
 
 t_philos	*ft_lstnew(int id, t_philos *philos)
@@ -66,23 +70,14 @@ void	*init_struct(t_data *data)
 
 void  *routine(t_data *data)
 {
-	/*while (data->philos->live == 1)
+	int i = 0;
+	while (data->dead == 1)
 	{
 		pthread_mutex_lock(&data->lock);
-		printf("test\n");
-		//printf("philo %d is eating\n", data->philos->id);
+		i++;
 		pthread_mutex_unlock(&data->lock);
-		sleep(data->time_to_eat);
-	}
-	return (NULL);*/
-	int i = -1;
-	while (++i < 10)
-	{
-		pthread_mutex_lock(&data->lock);
-		data->cont++;
-		pthread_mutex_unlock(&data->lock);
-		printf("philo id %d\n", data->philos->id);
-		printf("cont: %d\n", data->cont);
+		printf("philo %d is eating\n", data->philos->id);
+		printf("test %d\n", i);
 		sleep(data->time_to_eat);
 	}
 	return (NULL);
@@ -91,11 +86,12 @@ void  *routine(t_data *data)
 void scroll_philos(t_data *data)
 {
 	data->philos = data->philos_h;
-	data->cont = 0;
 	while (data->philos)
 	{
 		//printf("id: %d\nsleep: %d\neat: %d\nthink: %d\nlive: %d\n\n", data->philos->id, data->philos->sleep, data->philos->eat, data->philos->think, data->philos->live);
-		//printf("philo id: %d\n", data->philos->id);
+		printf("philo id: %d\n", data->philos->id);
+		//pthread_attr_init(&data->attr);
+		//pthread_attr_setstacksize(&data->attr, 65*1024*1024);
 		pthread_create(&data->philos->thread, NULL, &routine, data);
 		pthread_detach(&data->philos->thread);
 		data->philos = data->philos->next;
