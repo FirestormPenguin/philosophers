@@ -12,9 +12,9 @@ void  *count_routine(int counter_var)
 	index = -1;
 	while (++index < 1000000)
 	{
-	pthread_mutex_lock(&lock);
+		pthread_mutex_lock(&lock);
 		counter++;
-	pthread_mutex_unlock(&lock);
+		pthread_mutex_unlock(&lock);
 	}
 	return (NULL);
 }

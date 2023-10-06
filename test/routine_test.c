@@ -68,17 +68,13 @@ void	*init_struct(t_data *data)
 	}
 }
 
-void  *routine(t_data *data)
+void  *routine(t_philos *philos)
 {
 	int i = 0;
-	while (data->dead == 1)
+	while (philos->live == 1)
 	{
-		pthread_mutex_lock(&data->lock);
-		i++;
-		pthread_mutex_unlock(&data->lock);
-		printf("philo %d is eating\n", data->philos->id);
-		printf("test %d\n", i);
-		sleep(data->time_to_eat);
+		printf("philo %d is eating\n", philos->id);
+		sleep(1);
 	}
 	return (NULL);
 }
@@ -89,10 +85,7 @@ void scroll_philos(t_data *data)
 	while (data->philos)
 	{
 		//printf("id: %d\nsleep: %d\neat: %d\nthink: %d\nlive: %d\n\n", data->philos->id, data->philos->sleep, data->philos->eat, data->philos->think, data->philos->live);
-		printf("philo id: %d\n", data->philos->id);
-		//pthread_attr_init(&data->attr);
-		//pthread_attr_setstacksize(&data->attr, 65*1024*1024);
-		pthread_create(&data->philos->thread, NULL, &routine, data);
+		pthread_create(&data->philos->thread, NULL, &routine, data->philos);
 		pthread_detach(&data->philos->thread);
 		data->philos = data->philos->next;
 	}
