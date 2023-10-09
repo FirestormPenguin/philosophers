@@ -6,13 +6,13 @@
 /*   By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 09:25:26 by egiubell          #+#    #+#             */
-/*   Updated: 2023/10/09 10:16:45 by egiubell         ###   ########.fr       */
+/*   Updated: 2023/10/09 10:23:45 by egiubell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-void data_debug(t_data *data)
+void	data_debug(t_data *data)
 {
 	printf("philo_num: %d\n", data->philos_nb);
 	printf("time_to_die: %d\n", data->time_to_die);
@@ -21,7 +21,7 @@ void data_debug(t_data *data)
 	printf("must_eat: %d\n", data->must_eat);
 }
 
-void args_checks(int argc, char **argv, t_data *data)
+int	args_checks(int argc, char **argv, t_data *data)
 {
 	if (argc <= 4 || argc > 6)
 	{
@@ -35,9 +35,10 @@ void args_checks(int argc, char **argv, t_data *data)
 	}
 	else
 		data_debug(data);
+	return (0);
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_data data;
 
