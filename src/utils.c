@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/09 09:25:17 by egiubell          #+#    #+#             */
+/*   Updated: 2023/10/09 09:50:22 by egiubell         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/philo.h"
 
 int parse_arg(t_data *data, int argc, char **argv)
 {
-	data->philo_num = atoi(argv[1]);
-	if (data->philo_num < 1)
+	data->philos_nb = atoi(argv[1]);
+	if (data->philos_nb < 1)
 		return (1);
 	data->time_to_die = atoi(argv[2]);
 	if (data->time_to_die < 1)

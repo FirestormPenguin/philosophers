@@ -1,8 +1,8 @@
 NAME = philo
 INCLUDE = ./include/philo.h
 CC = gcc
-CFLAGS = -Werror -Wall -Wextra -g -I./include
-SRC = $(SRC_DIR)/philo.c $(SRC_DIR)/utils.c
+CFLAGS = -Wall -Wextra -pthread -g -I./include
+SRC = $(SRC_DIR)/philo.c $(SRC_DIR)/utils.c $(SRC_DIR)/init_struct.c $(SRC_DIR)/routine.c
 OBJ = $(addprefix $(OBJ_DIR)/,$(notdir $(SRC:%.c=%.o)))
 OBJ_DIR = ./obj
 SRC_DIR = ./src

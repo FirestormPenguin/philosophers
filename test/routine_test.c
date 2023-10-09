@@ -81,10 +81,11 @@ void  *routine(t_philos *philos)
 		philos->eat = 1;
 		philos->sleep = 0;
 		philos->think = 0;
-		sleep(3);
+		sleep(2);
 		pthread_mutex_unlock(&philos->fork);
 		pthread_mutex_unlock(&philos->next->fork);
-		sleep(1);
+		printf("philo %d is thinking\n", philos->id);
+		sleep(2);
 	}
 	return (NULL);
 }
@@ -116,7 +117,6 @@ int main(int argc, char **argv)
 	data.philos_nb = atoi(argv[1]);
 	data.time_to_eat = atoi(argv[2]);
 	data.time_to_sleep = atoi(argv[3]);
-	data.fork = 1;
 	data.dead = 1;
 	init_struct(&data);
 	pthread_mutex_init(&data.lock, NULL);
