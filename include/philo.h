@@ -52,8 +52,8 @@ typedef struct s_data
 	u_int64_t		timestamp_eating;
 	u_int64_t		timestamp_sleeping;
 	u_int64_t		timestamp_start;
-	t_philos	*philos;
-	t_philos	*philos_h;
+	t_philos		*philos;
+	t_philos		*philos_h;
 	pthread_mutex_t	lock;
 	pthread_mutex_t	write;
 	pthread_mutex_t	*forks;

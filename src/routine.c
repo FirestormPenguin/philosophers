@@ -6,7 +6,7 @@
 /*   By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 09:31:40 by egiubell          #+#    #+#             */
-/*   Updated: 2023/10/09 10:36:27 by egiubell         ###   ########.fr       */
+/*   Updated: 2023/10/09 11:35:42 by egiubell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,12 @@ void    *routine(void *args)
 		pthread_mutex_lock(&philos->fork);
 		pthread_mutex_lock(&philos->next->fork);
 		printf("philo %d is eating\n", philos->id);
-		philos->eat = 1;
-		philos->sleep = 0;
-		philos->think = 0;
 		sleep(2);
 		pthread_mutex_unlock(&philos->fork);
 		pthread_mutex_unlock(&philos->next->fork);
-		printf("philo %d is thinking\n", philos->id);
-		sleep(2);
+		printf("philo %d is sleeping\n", philos->id);
+		sleep(3);
+        printf("philo %d is thinking\n", philos->id);
 	}
 	return (NULL);
 }
