@@ -6,7 +6,7 @@
 /*   By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 09:31:40 by egiubell          #+#    #+#             */
-/*   Updated: 2023/10/09 12:07:31 by egiubell         ###   ########.fr       */
+/*   Updated: 2023/10/09 14:17:16 by egiubell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void    *routine(void *args)
 		pthread_mutex_unlock(&philos->fork);
 		pthread_mutex_unlock(&philos->next->fork);
 		printf("philo %d is sleeping\n", philos->id);
-		sleep(3);
+		sleep(2);
         printf("philo %d is thinking\n", philos->id);
 	}
 	return (NULL);
@@ -42,7 +42,6 @@ void    init_thread(t_data *data)
 	{
 		//printf("id: %d\nsleep: %d\neat: %d\nthink: %d\nlive: %d\n\n", data->philos->id, data->philos->sleep, data->philos->eat, data->philos->think, data->philos->live);
 		pthread_mutex_init(&data->philos->fork, NULL);
-		//pthread_create(&data->philos->thread, NULL, &routine, data->philos);
         pthread_create(&data->philos->thread, NULL, &routine, data->philos);
 		pthread_detach(data->philos->thread);
 		data->philos = data->philos->next;

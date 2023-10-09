@@ -6,7 +6,7 @@
 /*   By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 09:25:26 by egiubell          #+#    #+#             */
-/*   Updated: 2023/10/09 10:23:45 by egiubell         ###   ########.fr       */
+/*   Updated: 2023/10/09 12:49:26 by egiubell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	data_debug(t_data *data)
 {
-	printf("philo_num: %d\n", data->philos_nb);
+	printf("philo_nb: %d\n", data->philos_nb);
 	printf("time_to_die: %d\n", data->time_to_die);
 	printf("time_to_eat: %d\n", data->time_to_eat);
 	printf("time_to_sleep: %d\n", data->time_to_sleep);
