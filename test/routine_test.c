@@ -15,6 +15,7 @@ typedef struct s_philos
 	int think;
 	int live;
 	pthread_t thread;
+	pthread_mutex_t fork;
 	struct s_philos *next;
 }	t_philos;
 
@@ -42,6 +43,7 @@ t_philos	*ft_lstnew(int id, t_philos *philos)
 	philos->eat = 0;
 	philos->think = 0;
 	philos->live = 1;
+	pthread_mutex_init(&philos->fork, NULL);
 	philos->next = NULL;
 	return (philos);
 }
@@ -50,9 +52,9 @@ void	*init_struct(t_data *data)
 {
 	int i;
 
-	i = 0;
+	i = -1;
 	data->philos_h = NULL;
-	while(i < data->philos_nb)
+	while(++i < data->philos_nb)
 	{
 		if (i == 0)
 		{
@@ -64,8 +66,8 @@ void	*init_struct(t_data *data)
 			data->philos->next = ft_lstnew(i, data->philos);
 			data->philos = data->philos->next;
 		}
-		i++;
 	}
+	data->philos->next = data->philos_h;
 }
 
 void  *routine(t_philos *philos)
@@ -73,7 +75,15 @@ void  *routine(t_philos *philos)
 	int i = 0;
 	while (philos->live == 1)
 	{
+		pthread_mutex_lock(&philos->fork);
+		pthread_mutex_lock(&philos->next->fork);
 		printf("philo %d is eating\n", philos->id);
+		philos->eat = 1;
+		philos->sleep = 0;
+		philos->think = 0;
+		sleep(3);
+		pthread_mutex_unlock(&philos->fork);
+		pthread_mutex_unlock(&philos->next->fork);
 		sleep(1);
 	}
 	return (NULL);
@@ -81,10 +91,13 @@ void  *routine(t_philos *philos)
 
 void scroll_philos(t_data *data)
 {
-	data->philos = data->philos_h;
-	while (data->philos)
+	int i;
+
+	i = -1;
+	while (++i < data->philos_nb)
 	{
 		//printf("id: %d\nsleep: %d\neat: %d\nthink: %d\nlive: %d\n\n", data->philos->id, data->philos->sleep, data->philos->eat, data->philos->think, data->philos->live);
+		pthread_mutex_init(&data->philos->fork, NULL);
 		pthread_create(&data->philos->thread, NULL, &routine, data->philos);
 		pthread_detach(&data->philos->thread);
 		data->philos = data->philos->next;
