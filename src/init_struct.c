@@ -6,7 +6,7 @@
 /*   By: mivendit <mivendit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 09:25:05 by egiubell          #+#    #+#             */
-/*   Updated: 2023/10/10 16:24:37 by mivendit         ###   ########.fr       */
+/*   Updated: 2023/10/10 17:42:52 by mivendit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,18 @@ void	init_struct(t_philos *philos)
 		}
 		else
 		{
-			philos->next = ft_lstnew(i, philos);
+			philos->next = ft_lstnew(i, philos_h);
 			philos->next->data = philos_h->data;
 			philos = philos->next;
 		}
+		//printf("id cose %d\n", philos->id);
 	}
 	philos->next = philos_h;
+	
+	int j = -1;
+	while (++j < philos->data->philos_nb)
+	{
+		printf("id %d\n", philos->id);
+		philos = philos->next;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: mivendit <mivendit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 09:25:17 by egiubell          #+#    #+#             */
-/*   Updated: 2023/10/10 16:04:14 by mivendit         ###   ########.fr       */
+/*   Updated: 2023/10/10 16:54:51 by mivendit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,30 +40,29 @@ int parse_arg(t_data *data, int argc, char **argv)
 	return (0);
 }
 
-// void	ft_exit(t_data *data)
-// {
-// 	int i;
+void	clear_data(t_philos *philos)
+{
+	if (philos->data->tid)
+		free(philos->data->tid);
+	if (philos->data->forks)
+		free(philos->data->forks);
+	if (philos)
+		free(philos);
+}
 
-// 	i = -1;
-// 	while (++i < data->philos_nb)
-// 	{
-// 		pthread_mutex_destroy(&data->forks);
-// 		pthread_mutex_destroy(&data->philos);
-// 	}
-// 	pthread_mutex_destroy(&data->write);
-// 	pthread_mutex_destroy(&data->lock);
-// 	clear_data(data);
-// }
+void	ft_exit(t_philos *philos)
+{
+	int i;
 
-// void	clear_data(t_data *data)
-// {
-// 	if (data->tid)
-// 		free(data->tid);
-// 	if (data->forks)
-// 		free(data->forks);
-// 	if (data->philos)
-// 		free(data->philos);
-// }
+	i = -1;
+	while (++i < philos->data->philos_nb)
+	{
+		pthread_mutex_destroy(philos->data->forks);
+	}
+	pthread_mutex_destroy(&philos->data->write);
+	pthread_mutex_destroy(&philos->data->lock);
+	clear_data(philos);
+}
 
 u_int64_t	ft_gettimeofday(void)
 {

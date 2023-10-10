@@ -74,5 +74,5 @@ int 				parse_arg(t_data *data, int argc, char **argv);
 /*		OTHER		*/
 void				init_struct(t_philos *philos);
 void				init_thread(t_philos *philos);
-
+void				ft_exit(t_philos *philos);
 #endif
