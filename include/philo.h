@@ -31,11 +31,12 @@ typedef struct s_philos
 {
 	int				id;
 	int				sleep;
-	int				eat;
+	int				eat;7
 	int				think;
 	int				live;
 	pthread_t		thread;
 	pthread_mutex_t	fork;
+	t_data			*data;
 	struct s_philos	*next;
 }	t_philos;
 
@@ -57,7 +58,6 @@ typedef struct s_data
 	pthread_mutex_t	lock;
 	pthread_mutex_t	write;
 	pthread_mutex_t	*forks;
-
 	pthread_t		*tid;
 }	t_data;
 

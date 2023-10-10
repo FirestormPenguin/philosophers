@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   routine.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mivendit <mivendit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 09:31:40 by egiubell          #+#    #+#             */
-/*   Updated: 2023/10/09 14:17:16 by egiubell         ###   ########.fr       */
+/*   Updated: 2023/10/10 08:41:18 by mivendit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,25 @@
 void    *routine(void *args)
 {
     t_philos *philos;
-
+	
+	int meals;
+	
     philos = args;
+	meals = 0;
+	
 	
     while (philos->live == 1)
 	{
 		pthread_mutex_lock(&philos->fork);
 		pthread_mutex_lock(&philos->next->fork);
 		printf("philo %d is eating\n", philos->id);
-		sleep(2);
+		meals++;
+		printf("philo %d meal: %d\n", philos->id, meals);
+		ft_usleep(200);
 		pthread_mutex_unlock(&philos->fork);
 		pthread_mutex_unlock(&philos->next->fork);
 		printf("philo %d is sleeping\n", philos->id);
-		sleep(2);
+		ft_usleep(200);
         printf("philo %d is thinking\n", philos->id);
 	}
 	return (NULL);

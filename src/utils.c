@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mivendit <mivendit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 09:25:17 by egiubell          #+#    #+#             */
-/*   Updated: 2023/10/09 09:50:22 by egiubell         ###   ########.fr       */
+/*   Updated: 2023/10/10 09:56:02 by mivendit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,31 @@ int parse_arg(t_data *data, int argc, char **argv)
 	else
 		data->must_eat = 0;
 	return (0);
+}
+
+void	ft_exit(t_data *data)
+{
+	int i;
+
+	i = -1;
+	while (++i < data->philos_nb)
+	{
+		pthread_mutex_destroy(&data->forks);
+		pthread_mutex_destroy(&data->philos[i]->lock);
+	}
+	pthread_mutex_destroy(&data->write);
+	pthread_mutex_destroy(&data->lock);
+	clear_data(data);
+}
+
+void	clear_data(t_data *data)
+{
+	if (data->tid)
+		free(data->tid);
+	if (data->forks)
+		free(data->forks);
+	if (data->philos)
+		free(data->philos);
 }
 
 u_int64_t	ft_gettimeofday(void)
