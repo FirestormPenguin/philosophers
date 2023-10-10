@@ -72,7 +72,7 @@ int					ft_usleep(useconds_t time);
 int 				parse_arg(t_data *data, int argc, char **argv);
 
 /*		OTHER		*/
-void				init_struct(t_philos *philos);
+t_philos			*init_struct(t_data *data);
 void				init_thread(t_philos *philos);
 void				ft_exit(t_philos *philos);
 #endif

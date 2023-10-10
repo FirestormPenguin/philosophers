@@ -3,55 +3,55 @@
 /*                                                        :::      ::::::::   */
 /*   init_struct.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mivendit <mivendit@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afalconi <afalconi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 09:25:05 by egiubell          #+#    #+#             */
-/*   Updated: 2023/10/10 17:42:52 by mivendit         ###   ########.fr       */
+/*   Updated: 2023/10/10 18:36:17 by afalconi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-t_philos	*ft_lstnew(int id, t_philos *philos)
+static t_philos	*ft_lstnew(int id, t_data *data)
 {
-	philos->id = id;
-	philos->sleep = 0;
-	philos->eat = 0;
-	philos->think = 0;
-	philos->live = 1;
-	pthread_mutex_init(&philos->fork, NULL);
-	philos->next = NULL;
-	return (philos);
+	t_philos *tmp;
+
+	tmp = NULL;
+	tmp = malloc(sizeof(t_philos));
+	tmp->id = id;
+	tmp->sleep = 0;
+	tmp->eat = 0;
+	tmp->think = 0;
+	tmp->live = 1;
+	tmp->data = data;
+	pthread_mutex_init(&tmp->fork, NULL);
+	tmp->next = NULL;
+	return (tmp);
 }
 
-void	init_struct(t_philos *philos)
+t_philos	*init_struct(t_data *data)
 {
 	int i;
 	t_philos *philos_h;
+	t_philos *philos;
 
 	i = -1;
 	philos_h = NULL;
-	while(++i < philos->data->philos_nb)
+	philos = NULL;
+	while(++i < data->philos_nb)
 	{
 		if (i == 0)
 		{
-			philos = ft_lstnew(i, philos);
+			philos = ft_lstnew(i, data);
 			philos_h = philos;
 		}
 		else
 		{
-			philos->next = ft_lstnew(i, philos_h);
-			philos->next->data = philos_h->data;
+			philos->next = ft_lstnew(i, data);
 			philos = philos->next;
 		}
-		//printf("id cose %d\n", philos->id);
 	}
 	philos->next = philos_h;
-	
-	int j = -1;
-	while (++j < philos->data->philos_nb)
-	{
-		printf("id %d\n", philos->id);
-		philos = philos->next;
-	}
+	philos = philos_h;
+	return(philos_h);
 }

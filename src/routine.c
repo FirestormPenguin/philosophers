@@ -15,10 +15,10 @@
 void    *routine(void *args)
 {
     t_philos *philos;
-	int meals;
+	int happy_meals;
 	
     philos = args;
-	meals = 0;
+	happy_meals = 0;
 	printf("id %d\n", philos->id);
     // while (philos->live == 1)
 	// {
