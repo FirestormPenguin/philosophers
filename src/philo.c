@@ -6,7 +6,7 @@
 /*   By: mivendit <mivendit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 09:25:26 by egiubell          #+#    #+#             */
-/*   Updated: 2023/10/10 08:42:24 by mivendit         ###   ########.fr       */
+/*   Updated: 2023/10/10 16:24:46 by mivendit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,34 +20,35 @@ void	data_debug(t_data *data)
 	printf("time_to_sleep: %d\n", data->time_to_sleep);
 	printf("must_eat: %d\n\n", data->must_eat);
 	printf("PHILO PROCESS START HERE\n\n");
-	
 }
 
-int	args_checks(int argc, char **argv, t_data *data)
+int	args_checks(int argc, char **argv, t_philos *philos)
 {
 	if (argc <= 4 || argc > 6)
 	{
 		printf("%s\n", INPUT_ERR_3);
 		return (1);
 	}
-	else if (parse_arg(data, argc, argv))
+	else if (parse_arg(philos->data, argc, argv))
 	{
 		printf("%s\n", INPUT_ERR_1);
 		return (1);
 	}
 	else
-		data_debug(data);
+		data_debug(philos->data);
 	return (0);
 }
 
 int	main(int argc, char **argv)
 {
-	t_data data;
+	t_philos *philos;
 
-	args_checks(argc, argv, &data);
-	init_struct(&data);
-	init_thread(&data);
-	while(data.dead == 1);
-	pthread_mutex_destroy(&data.lock);
+	philos = malloc(sizeof(t_philos));
+	philos->data = malloc(sizeof(t_data));
+	args_checks(argc, argv, philos);
+	init_struct(philos);
+	init_thread(philos);
+	while(philos->data->dead == 1);
+	pthread_mutex_destroy(&philos->data->lock);
 	return (0);
 }

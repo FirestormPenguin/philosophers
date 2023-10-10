@@ -27,20 +27,7 @@
 # define GET_TIME_ERR "TIME ERROR: my_gettimeofday Failed"
 
 /*Structure for the philosophers*/
-typedef struct s_philos
-{
-	int				id;
-	int				sleep;
-	int				eat;7
-	int				think;
-	int				live;
-	pthread_t		thread;
-	pthread_mutex_t	fork;
-	t_data			*data;
-	struct s_philos	*next;
-}	t_philos;
 
-/*Structure for global data shared among philosophers*/
 typedef struct s_data
 {
 	int				philos_nb;
@@ -53,13 +40,27 @@ typedef struct s_data
 	u_int64_t		timestamp_eating;
 	u_int64_t		timestamp_sleeping;
 	u_int64_t		timestamp_start;
-	t_philos		*philos;
-	t_philos		*philos_h;
 	pthread_mutex_t	lock;
 	pthread_mutex_t	write;
 	pthread_mutex_t	*forks;
 	pthread_t		*tid;
 }	t_data;
+
+typedef struct s_philos
+{
+	int				id;
+	int				sleep;
+	int				eat;
+	int				think;
+	int				live;
+	pthread_t		thread;
+	pthread_mutex_t	fork;
+	t_data			*data;
+	struct s_philos	*next;
+}	t_philos;
+
+/*Structure for global data shared among philosophers*/
+
 
 /*The global functions*/
 
@@ -71,7 +72,7 @@ int					ft_usleep(useconds_t time);
 int 				parse_arg(t_data *data, int argc, char **argv);
 
 /*		OTHER		*/
-void				init_struct(t_data *data);
-void				init_thread(t_data *data);
+void				init_struct(t_philos *philos);
+void				init_thread(t_philos *philos);
 
 #endif
