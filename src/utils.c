@@ -6,7 +6,7 @@
 /*   By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 09:25:17 by egiubell          #+#    #+#             */
-/*   Updated: 2023/10/12 17:30:38 by egiubell         ###   ########.fr       */
+/*   Updated: 2023/10/12 17:47:26 by egiubell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	ft_exit(t_philos *philos)
 	while (++i < philos->data->philos_nb)
 	{
 		pthread_mutex_destroy(&philos->data->lock);
-		pthread_mutex_destroy(&philos->data->lock);
+		pthread_mutex_destroy(&philos->data->write);
 	}
 	clear_data(philos);
 }
