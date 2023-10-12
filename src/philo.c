@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afalconi <afalconi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 09:25:26 by egiubell          #+#    #+#             */
-/*   Updated: 2023/10/10 18:21:59 by afalconi         ###   ########.fr       */
+/*   Updated: 2023/10/12 13:20:23 by egiubell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ int	main(int argc, char **argv)
 	data = malloc(sizeof(t_data));
 	args_checks(argc, argv, data);
 	philos = init_struct(data);
-	//init_thread(philos);
-	//while(philos->data->dead == 1);
-	//pthread_mutex_destroy(&philos->data->lock);
+	init_thread(philos);
+	while(philos->data->dead == 1 && philos->data->finish_meals == 1);
+	pthread_mutex_destroy(&philos->data->lock);
 	return (0);
 }

@@ -36,6 +36,7 @@ typedef struct s_data
 	int				time_to_sleep;
 	int				must_eat;
 	int				dead;
+	int				finish_meals;
 	u_int64_t		timestamp_death;
 	u_int64_t		timestamp_eating;
 	u_int64_t		timestamp_sleeping;
@@ -54,6 +55,7 @@ typedef struct s_philos
 	int				think;
 	int				live;
 	pthread_t		thread;
+	pthread_t		monitor;
 	pthread_mutex_t	fork;
 	t_data			*data;
 	struct s_philos	*next;

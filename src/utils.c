@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afalconi <afalconi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 09:25:17 by egiubell          #+#    #+#             */
-/*   Updated: 2023/10/10 18:01:44 by afalconi         ###   ########.fr       */
+/*   Updated: 2023/10/12 14:02:10 by egiubell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,9 @@ int parse_arg(t_data *data, int argc, char **argv)
 	else
 		data->must_eat = 0;
 	data->dead = 1;
+	data->finish_meals = 1;
+	data->timestamp_death = ft_gettimeofday() + data->time_to_die;
 	pthread_mutex_init(&data->lock, NULL);
-	pthread_mutex_init(&data->write, NULL);
 	return (0);
 }
 
