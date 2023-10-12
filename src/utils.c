@@ -6,11 +6,21 @@
 /*   By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 09:25:17 by egiubell          #+#    #+#             */
-/*   Updated: 2023/10/12 14:02:10 by egiubell         ###   ########.fr       */
+/*   Updated: 2023/10/12 17:04:34 by egiubell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
+
+void	init_data(t_data *data)
+{
+	data->dead = 1;
+	data->finish_meals = 1;
+	data->timestamp_death = ft_gettimeofday() + data->time_to_die;
+	data->timestamp_start = ft_gettimeofday();
+	pthread_mutex_init(&data->lock, NULL);
+	pthread_mutex_init(&data->write, NULL);
+}
 
 int parse_arg(t_data *data, int argc, char **argv)
 {
@@ -34,36 +44,29 @@ int parse_arg(t_data *data, int argc, char **argv)
 	}
 	else
 		data->must_eat = 0;
-	data->dead = 1;
-	data->finish_meals = 1;
-	data->timestamp_death = ft_gettimeofday() + data->time_to_die;
-	pthread_mutex_init(&data->lock, NULL);
+	init_data(data);
 	return (0);
 }
 
-void	clear_data(t_philos *philos)
-{
-	if (philos->data->tid)
-		free(philos->data->tid);
-	if (philos->data->forks)
-		free(philos->data->forks);
-	if (philos)
-		free(philos);
-}
+// void	clear_data(t_philos *philos)
+// {
+// 	if (philos)
+// 		free(philos);
+// }
 
-void	ft_exit(t_philos *philos)
-{
-	int i;
+// void	ft_exit(t_philos *philos)
+// {
+// 	int i;
 
-	i = -1;
-	while (++i < philos->data->philos_nb)
-	{
-		pthread_mutex_destroy(philos->data->forks);
-	}
-	pthread_mutex_destroy(&philos->data->write);
-	pthread_mutex_destroy(&philos->data->lock);
-	clear_data(philos);
-}
+// 	i = -1;
+// 	while (++i < philos->data->philos_nb)
+// 	{
+// 		pthread_mutex_destroy(philos->data->forks);
+// 	}
+// 	pthread_mutex_destroy(&philos->data->write);
+// 	pthread_mutex_destroy(&philos->data->lock);
+// 	clear_data(philos);
+// }
 
 u_int64_t	ft_gettimeofday(void)
 {

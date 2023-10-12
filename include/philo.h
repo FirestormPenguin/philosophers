@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philo.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/12 16:04:22 by egiubell          #+#    #+#             */
+/*   Updated: 2023/10/12 17:04:29 by egiubell         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
@@ -75,4 +86,9 @@ int 				parse_arg(t_data *data, int argc, char **argv);
 t_philos			*init_struct(t_data *data);
 void				init_thread(t_philos *philos);
 void				ft_exit(t_philos *philos);
+
+void				eat(t_philos *philos);
+void				fork_taken(t_philos *philos);
+void				ft_sleep(t_philos *philos);
+void				think(t_philos *philos);
 #endif
