@@ -43,8 +43,6 @@ typedef struct s_data
 	u_int64_t		timestamp_start;
 	pthread_mutex_t	lock;
 	pthread_mutex_t	write;
-	pthread_mutex_t	*forks;
-	pthread_t		*tid;
 }	t_data;
 
 typedef struct s_philos
