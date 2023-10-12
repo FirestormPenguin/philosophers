@@ -6,7 +6,7 @@
 /*   By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 09:25:26 by egiubell          #+#    #+#             */
-/*   Updated: 2023/10/12 13:20:23 by egiubell         ###   ########.fr       */
+/*   Updated: 2023/10/12 17:27:29 by egiubell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,6 @@ int	main(int argc, char **argv)
 	philos = init_struct(data);
 	init_thread(philos);
 	while(philos->data->dead == 1 && philos->data->finish_meals == 1);
-	pthread_mutex_destroy(&philos->data->lock);
+	free(data);
 	return (0);
 }
