@@ -6,7 +6,7 @@
 /*   By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 09:31:40 by egiubell          #+#    #+#             */
-/*   Updated: 2023/10/12 17:51:04 by egiubell         ###   ########.fr       */
+/*   Updated: 2023/10/13 12:26:58 by egiubell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ void    init_thread(t_philos *philos)
 		pthread_mutex_init(&philos->fork, NULL);
         pthread_create(&philos->thread, NULL, &routine, philos);
 		pthread_detach(philos->thread);
+		ft_usleep(1);
 		philos = philos->next;
 	}
 }
