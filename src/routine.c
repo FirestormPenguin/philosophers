@@ -22,7 +22,7 @@ void *routine_monitor(void *args)
 		pthread_mutex_lock(&philos->data->lock);
 		if (ft_gettimeofday() >= philos->data->timestamp_death && philos->eat == 0)
 		{	
-			printf("%lu %d died",ft_gettimeofday() 
+			printf("%lu %d died\n",ft_gettimeofday() 
 				- philos->data->timestamp_start , philos->id);
 			philos->data->dead = 0;
 		}
@@ -34,16 +34,16 @@ void *routine_monitor(void *args)
 void    *routine(void *args)
 {
     t_philos *philos;
-	int meals;
+	int happy_meals;
 	
     philos = args;
-	meals = 0;
+	happy_meals = 0;
 	pthread_create(&philos->monitor, NULL, &routine_monitor, philos);
     while (philos->live == 1)
 	{
 		eat(philos);
-		meals++;
-		if (meals == philos->data->must_eat)
+		happy_meals++;
+		if (happy_meals == philos->data->must_eat)
 			break ;
 		ft_sleep(philos);
 		think(philos);
