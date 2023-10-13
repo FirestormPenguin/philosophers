@@ -6,7 +6,7 @@
 /*   By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 14:55:27 by egiubell          #+#    #+#             */
-/*   Updated: 2023/10/13 15:51:18 by egiubell         ###   ########.fr       */
+/*   Updated: 2023/10/13 16:19:51 by egiubell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static t_philos	*ft_lstnew(int id, t_data *data)
 {
-	t_philos *tmp;
+	t_philos	*tmp;
 
 	tmp = NULL;
 	tmp = malloc(sizeof(t_philos));
@@ -29,14 +29,14 @@ static t_philos	*ft_lstnew(int id, t_data *data)
 
 t_philos	*init_struct(t_data *data)
 {
-	int i;
-	t_philos *philos_h;
-	t_philos *philos;
+	int			i;
+	t_philos	*philos_h;
+	t_philos	*philos;
 
 	i = -1;
 	philos_h = NULL;
 	philos = NULL;
-	while(++i < data->philos_nb)
+	while (++i < data->philos_nb)
 	{
 		if (i == 0)
 		{
@@ -51,5 +51,5 @@ t_philos	*init_struct(t_data *data)
 	}
 	philos->next = philos_h;
 	philos = philos_h;
-	return(philos_h);
+	return (philos_h);
 }

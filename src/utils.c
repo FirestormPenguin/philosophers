@@ -6,7 +6,7 @@
 /*   By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 09:25:17 by egiubell          #+#    #+#             */
-/*   Updated: 2023/10/13 14:41:54 by egiubell         ###   ########.fr       */
+/*   Updated: 2023/10/13 16:20:18 by egiubell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	init_data(t_data *data)
 	pthread_mutex_init(&data->write, NULL);
 }
 
-int parse_arg(t_data *data, int argc, char **argv)
+int	parse_arg(t_data *data, int argc, char **argv)
 {
 	data->philos_nb = atoi(argv[1]);
 	if (data->philos_nb < 1)
@@ -54,7 +54,8 @@ u_int64_t	ft_gettimeofday(void)
 
 	if (gettimeofday(&time_value, NULL))
 		printf("%s\n", GET_TIME_ERR);
-	return ((time_value.tv_sec * (u_int64_t)1000) + (time_value.tv_usec / 1000));
+	return ((time_value.tv_sec * (u_int64_t)1000)
+		+ (time_value.tv_usec / 1000));
 }
 
 int	ft_usleep(useconds_t time)

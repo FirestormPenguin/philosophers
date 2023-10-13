@@ -6,7 +6,7 @@
 /*   By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 16:04:22 by egiubell          #+#    #+#             */
-/*   Updated: 2023/10/13 15:51:27 by egiubell         ###   ########.fr       */
+/*   Updated: 2023/10/13 16:15:54 by egiubell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,7 @@
 /*OTHER ERROR*/
 # define GET_TIME_ERR "TIME ERROR: my_gettimeofday Failed"
 
-/*Structure for the philosophers*/
-
+/*Structure for global data shared among philosophers*/
 typedef struct s_data
 {
 	int				philos_nb;
@@ -56,6 +55,7 @@ typedef struct s_data
 	pthread_mutex_t	write;
 }	t_data;
 
+/*Structure for the philosophers*/
 typedef struct s_philos
 {
 	int				id;
@@ -68,9 +68,6 @@ typedef struct s_philos
 	struct s_philos	*next;
 }	t_philos;
 
-/*Structure for global data shared among philosophers*/
-
-
 /*The global functions*/
 
 /*		TIME		*/
@@ -78,7 +75,7 @@ u_int64_t			ft_gettimeofday(void);
 int					ft_usleep(useconds_t time);
 
 /*		INPUT		*/
-int 				parse_arg(t_data *data, int argc, char **argv);
+int					parse_arg(t_data *data, int argc, char **argv);
 
 /*		OTHER		*/
 t_philos			*init_struct(t_data *data);

@@ -6,24 +6,25 @@
 /*   By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 09:31:40 by egiubell          #+#    #+#             */
-/*   Updated: 2023/10/13 14:28:27 by egiubell         ###   ########.fr       */
+/*   Updated: 2023/10/13 16:21:00 by egiubell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-void *routine_monitor(void *args)
+void	*routine_monitor(void *args)
 {
-	t_philos *philos;
-	
-    philos = args;
-	while(philos->data->dead == 1)
+	t_philos	*philos;
+
+	philos = args;
+	while (philos->data->dead == 1)
 	{
 		pthread_mutex_lock(&philos->data->lock);
-		if (ft_gettimeofday() >= philos->data->timestamp_death && philos->eat == 0)
-		{	
-			printf("%lu %d died\n",ft_gettimeofday()
-				- philos->data->timestamp_start , philos->id);
+		if (ft_gettimeofday() >= philos->data->timestamp_death
+			&& philos->eat == 0)
+		{
+			printf("%lu %d died\n", ft_gettimeofday()
+				- philos->data->timestamp_start, philos->id);
 			philos->data->dead = 0;
 		}
 		pthread_mutex_unlock(&philos->data->lock);
@@ -31,15 +32,15 @@ void *routine_monitor(void *args)
 	return (NULL);
 }
 
-void    *routine(void *args)
+void	*routine(void *args)
 {
-    t_philos *philos;
-	int happy_meals;
-	
-    philos = args;
+	t_philos	*philos;
+	int			happy_meals;
+
+	philos = args;
 	happy_meals = 0;
 	pthread_create(&philos->monitor, NULL, &routine_monitor, philos);
-    while (philos->live == 1)
+	while (philos->live == 1)
 	{
 		eat(philos);
 		happy_meals++;
@@ -53,15 +54,15 @@ void    *routine(void *args)
 	return (NULL);
 }
 
-void    init_thread(t_philos *philos)
+void	init_thread(t_philos *philos)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	while (++i < philos->data->philos_nb)
 	{
 		pthread_mutex_init(&philos->fork, NULL);
-        pthread_create(&philos->thread, NULL, &routine, philos);
+		pthread_create(&philos->thread, NULL, &routine, philos);
 		pthread_detach(philos->thread);
 		ft_usleep(1);
 		philos = philos->next;
