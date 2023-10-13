@@ -6,7 +6,7 @@
 /*   By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 09:25:17 by egiubell          #+#    #+#             */
-/*   Updated: 2023/10/12 17:47:26 by egiubell         ###   ########.fr       */
+/*   Updated: 2023/10/13 12:44:16 by egiubell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	init_data(t_data *data)
 {
 	data->dead = 1;
-	data->finish_meals = 1;
+	data->finish_meals = 0;
 	data->timestamp_death = ft_gettimeofday() + data->time_to_die;
 	data->timestamp_start = ft_gettimeofday();
 	pthread_mutex_init(&data->lock, NULL);

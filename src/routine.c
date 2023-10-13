@@ -6,7 +6,7 @@
 /*   By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 09:31:40 by egiubell          #+#    #+#             */
-/*   Updated: 2023/10/13 12:26:58 by egiubell         ###   ########.fr       */
+/*   Updated: 2023/10/13 13:08:34 by egiubell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void *routine_monitor(void *args)
 		pthread_mutex_lock(&philos->data->lock);
 		if (ft_gettimeofday() >= philos->data->timestamp_death && philos->eat == 0)
 		{	
-			printf("%lu %d died\n",ft_gettimeofday() 
+			printf("%lu %d died\n",ft_gettimeofday()
 				- philos->data->timestamp_start , philos->id);
 			philos->data->dead = 0;
 		}
@@ -49,7 +49,8 @@ void    *routine(void *args)
 		think(philos);
 	}
 	ft_exit(philos);
-	philos->data->finish_meals = 0;
+	philos->data->finish_meals++;
+	//philos->data->finish_meals = 0;
 	return (NULL);
 }
 
