@@ -6,7 +6,7 @@
 /*   By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 09:25:26 by egiubell          #+#    #+#             */
-/*   Updated: 2023/10/13 13:40:32 by egiubell         ###   ########.fr       */
+/*   Updated: 2023/10/13 15:21:09 by egiubell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,10 @@ int	main(int argc, char **argv)
 	data = malloc(sizeof(t_data));
 	args_checks(argc, argv, data);
 	philos = init_struct(data);
-	init_thread(philos);
-	while(philos->data->dead == 1 &&
-		philos->data->finish_meals != philos->data->philos_nb);
+	//init_thread(philos);
+	// while(philos->data->dead == 1 &&
+	// 	philos->data->finish_meals != philos->data->philos_nb);
+	ft_exit(philos);
 	free(data);
 	return (0);
 }

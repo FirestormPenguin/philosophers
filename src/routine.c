@@ -6,7 +6,7 @@
 /*   By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 09:31:40 by egiubell          #+#    #+#             */
-/*   Updated: 2023/10/13 13:44:51 by egiubell         ###   ########.fr       */
+/*   Updated: 2023/10/13 14:28:27 by egiubell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ void    *routine(void *args)
 	}
 	philos->data->finish_meals++;
 	philos->next->data->finish_meals = philos->data->finish_meals;
-	//ft_exit(philos);
 	return (NULL);
 }
 
