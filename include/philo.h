@@ -6,7 +6,7 @@
 /*   By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 16:04:22 by egiubell          #+#    #+#             */
-/*   Updated: 2023/10/12 17:29:35 by egiubell         ###   ########.fr       */
+/*   Updated: 2023/10/13 15:51:27 by egiubell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,7 @@ typedef struct s_data
 typedef struct s_philos
 {
 	int				id;
-	int				sleep;
 	int				eat;
-	int				think;
 	int				live;
 	pthread_t		thread;
 	pthread_t		monitor;

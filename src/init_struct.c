@@ -6,7 +6,7 @@
 /*   By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 14:55:27 by egiubell          #+#    #+#             */
-/*   Updated: 2023/10/12 17:17:06 by egiubell         ###   ########.fr       */
+/*   Updated: 2023/10/13 15:51:18 by egiubell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,7 @@ static t_philos	*ft_lstnew(int id, t_data *data)
 	tmp = NULL;
 	tmp = malloc(sizeof(t_philos));
 	tmp->id = id;
-	tmp->sleep = 0;
 	tmp->eat = 0;
-	tmp->think = 0;
 	tmp->live = 1;
 	tmp->data = data;
 	pthread_mutex_init(&tmp->fork, NULL);

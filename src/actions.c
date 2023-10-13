@@ -6,7 +6,7 @@
 /*   By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 14:55:16 by egiubell          #+#    #+#             */
-/*   Updated: 2023/10/12 17:07:25 by egiubell         ###   ########.fr       */
+/*   Updated: 2023/10/13 15:51:52 by egiubell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ void    eat(t_philos *philos)
     pthread_mutex_unlock(&philos->data->write);
 	philos->data->timestamp_death = ft_gettimeofday() + philos->data->time_to_die;
     philos->eat = 1;
-    philos->sleep = 0;
-	philos->think = 0;
 	ft_usleep(philos->data->time_to_eat);
 	pthread_mutex_unlock(&philos->next->fork);
 	pthread_mutex_unlock(&philos->fork);
@@ -45,8 +43,6 @@ void    ft_sleep(t_philos *philos)
     printf("%lu %d is sleeping\n",ft_gettimeofday()
         - philos->data->timestamp_start, philos->id);
     philos->eat = 0;
-	philos->sleep = 1;
-	philos->think = 0;
     pthread_mutex_unlock(&philos->data->write);
 	ft_usleep(philos->data->time_to_sleep);
 }
@@ -57,7 +53,5 @@ void    think(t_philos *philos)
     printf("%lu %d is thinking\n",ft_gettimeofday()
         - philos->data->timestamp_start, philos->id);
     philos->eat = 0;
-	philos->sleep = 0;
-	philos->think = 1;
     pthread_mutex_unlock(&philos->data->write);
 }
