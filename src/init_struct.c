@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_struct.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mivendit <mivendit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 14:55:27 by egiubell          #+#    #+#             */
-/*   Updated: 2023/10/13 16:19:51 by egiubell         ###   ########.fr       */
+/*   Updated: 2023/10/16 12:36:39 by mivendit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ static t_philos	*ft_lstnew(int id, t_data *data)
 	tmp->eat = 0;
 	tmp->live = 1;
 	tmp->data = data;
+	tmp->timestamp_death = data->data_death;
+	tmp->timestamp_start = data->data_start;
 	pthread_mutex_init(&tmp->fork, NULL);
 	tmp->next = NULL;
 	return (tmp);

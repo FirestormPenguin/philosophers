@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mivendit <mivendit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 16:04:22 by egiubell          #+#    #+#             */
-/*   Updated: 2023/10/16 10:54:43 by egiubell         ###   ########.fr       */
+/*   Updated: 2023/10/16 12:36:42 by mivendit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@
 # define GET_TIME_ERR "TIME ERROR: my_gettimeofday Failed"
 
 /*Structure for global data shared among philosophers*/
+struct s_philos;
+
 typedef struct s_data
 {
 	int				philos_nb;
@@ -47,10 +49,9 @@ typedef struct s_data
 	int				must_eat;
 	int				dead;
 	int				finish_meals;
-	u_int64_t		timestamp_death;
-	u_int64_t		timestamp_eating;
-	u_int64_t		timestamp_sleeping;
-	u_int64_t		timestamp_start;
+	struct s_philos	*philos;
+	u_int64_t		data_death;
+	u_int64_t		data_start;
 	pthread_mutex_t	lock;
 	pthread_mutex_t	write;
 }	t_data;
@@ -64,6 +65,8 @@ typedef struct s_philos
 	pthread_t		thread;
 	pthread_t		monitor;
 	pthread_mutex_t	fork;
+	u_int64_t		timestamp_death;
+	u_int64_t		timestamp_start;
 	t_data			*data;
 	struct s_philos	*next;
 }	t_philos;

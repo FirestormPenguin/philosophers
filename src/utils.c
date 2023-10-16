@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mivendit <mivendit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 09:25:17 by egiubell          #+#    #+#             */
-/*   Updated: 2023/10/13 16:20:18 by egiubell         ###   ########.fr       */
+/*   Updated: 2023/10/16 12:21:26 by mivendit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void	init_data(t_data *data)
 {
 	data->dead = 1;
 	data->finish_meals = 0;
-	data->timestamp_death = ft_gettimeofday() + data->time_to_die;
-	data->timestamp_start = ft_gettimeofday();
+	data->data_death = ft_gettimeofday() + data->time_to_die;
+	data->data_start = ft_gettimeofday();
 	pthread_mutex_init(&data->lock, NULL);
 	pthread_mutex_init(&data->write, NULL);
 }
@@ -64,6 +64,6 @@ int	ft_usleep(useconds_t time)
 
 	start = ft_gettimeofday();
 	while ((ft_gettimeofday() - start) < time)
-		usleep(time / 10);
+		usleep(100);
 	return (0);
 }

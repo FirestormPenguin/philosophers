@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   routine.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mivendit <mivendit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 09:31:40 by egiubell          #+#    #+#             */
-/*   Updated: 2023/10/13 16:21:00 by egiubell         ###   ########.fr       */
+/*   Updated: 2023/10/16 12:37:20 by mivendit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ void	*routine_monitor(void *args)
 	while (philos->data->dead == 1)
 	{
 		pthread_mutex_lock(&philos->data->lock);
-		if (ft_gettimeofday() >= philos->data->timestamp_death
+		if (ft_gettimeofday() >= philos->timestamp_death
 			&& philos->eat == 0)
 		{
 			printf("%lu %d died\n", ft_gettimeofday()
-				- philos->data->timestamp_start, philos->id);
+				- philos->timestamp_start, philos->id);
 			philos->data->dead = 0;
 		}
 		pthread_mutex_unlock(&philos->data->lock);
