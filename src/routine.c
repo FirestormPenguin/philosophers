@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   routine.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mivendit <mivendit@student.42.fr>          +#+  +:+       +#+        */
+/*   By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 09:31:40 by egiubell          #+#    #+#             */
-/*   Updated: 2023/10/16 12:37:20 by mivendit         ###   ########.fr       */
+/*   Updated: 2023/10/16 16:47:26 by egiubell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,21 @@ void	*routine(void *args)
 	return (NULL);
 }
 
+void scroll_philos(t_philos *philos)
+{
+	while(philos->id != 0)
+	{
+		philos = philos->next;
+	}
+	printf("philos_h id %d\n\n", philos->id);
+}
+
 void	init_thread(t_philos *philos)
 {
 	int	i;
 
 	i = -1;
+	scroll_philos(philos);
 	while (++i < philos->data->philos_nb)
 	{
 		pthread_mutex_init(&philos->fork, NULL);
