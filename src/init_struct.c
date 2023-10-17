@@ -6,7 +6,7 @@
 /*   By: mivendit <mivendit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 14:55:27 by egiubell          #+#    #+#             */
-/*   Updated: 2023/10/17 09:31:46 by mivendit         ###   ########.fr       */
+/*   Updated: 2023/10/17 10:34:30 by mivendit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ static t_philos	*ft_lstnew(int id, t_data *data)
 	tmp->timestamp_death = data->data_death;
 	tmp->timestamp_start = data->data_start;
 	pthread_mutex_init(&tmp->fork, NULL);
-	//printf("mutex_init %d\n", pthread_mutex_init(&tmp->fork, NULL));
 	tmp->next = NULL;
 	return (tmp);
 }
