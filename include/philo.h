@@ -6,7 +6,7 @@
 /*   By: mivendit <mivendit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 16:04:22 by egiubell          #+#    #+#             */
-/*   Updated: 2023/10/17 11:30:38 by mivendit         ###   ########.fr       */
+/*   Updated: 2023/10/17 13:00:49 by mivendit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,9 +84,12 @@ int					parse_arg(t_data *data, int argc, char **argv);
 t_philos			*init_struct(t_data *data);
 void				init_thread(t_philos *philos);
 void				ft_exit(t_philos *philos);
+long				ft_atoi(const char *str);
 
+/*		ACTIONS		*/
 void				eat(t_philos *philos);
 void				fork_taken(t_philos *philos);
 void				ft_sleep(t_philos *philos);
 void				think(t_philos *philos);
+
 #endif

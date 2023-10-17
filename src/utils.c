@@ -6,7 +6,7 @@
 /*   By: mivendit <mivendit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 09:25:17 by egiubell          #+#    #+#             */
-/*   Updated: 2023/10/16 12:21:26 by mivendit         ###   ########.fr       */
+/*   Updated: 2023/10/17 13:01:01 by mivendit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,21 +24,21 @@ void	init_data(t_data *data)
 
 int	parse_arg(t_data *data, int argc, char **argv)
 {
-	data->philos_nb = atoi(argv[1]);
+	data->philos_nb = ft_atoi(argv[1]);
 	if (data->philos_nb < 1)
 		return (1);
-	data->time_to_die = atoi(argv[2]);
+	data->time_to_die = ft_atoi(argv[2]);
 	if (data->time_to_die < 1)
 		return (1);
-	data->time_to_eat = atoi(argv[3]);
+	data->time_to_eat = ft_atoi(argv[3]);
 	if (data->time_to_eat < 1)
 		return (1);
-	data->time_to_sleep = atoi(argv[4]);
+	data->time_to_sleep = ft_atoi(argv[4]);
 	if (data->time_to_sleep < 1)
 		return (1);
 	if (argc == 6)
 	{
-		data->must_eat = atoi(argv[5]);
+		data->must_eat = ft_atoi(argv[5]);
 		if (data->must_eat < 1)
 			return (1);
 	}

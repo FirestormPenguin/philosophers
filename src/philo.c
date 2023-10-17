@@ -6,13 +6,13 @@
 /*   By: mivendit <mivendit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 09:25:26 by egiubell          #+#    #+#             */
-/*   Updated: 2023/10/17 11:57:37 by mivendit         ###   ########.fr       */
+/*   Updated: 2023/10/17 12:16:24 by mivendit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-void	data_debug(t_data *data)
+/*void	data_debug(t_data *data)
 {
 	printf("philo_nb: %d\n", data->philos_nb);
 	printf("time_to_die: %d\n", data->time_to_die);
@@ -20,7 +20,7 @@ void	data_debug(t_data *data)
 	printf("time_to_sleep: %d\n", data->time_to_sleep);
 	printf("must_eat: %d\n\n", data->must_eat);
 	printf("PHILO PROCESS START HERE\n\n");
-}
+}*/
 
 int	args_checks(int argc, char **argv,	t_data *data)
 {
@@ -34,8 +34,6 @@ int	args_checks(int argc, char **argv,	t_data *data)
 		printf("%s\n", INPUT_ERR_1);
 		return (1);
 	}
-	else
-		data_debug(data);
 	return (0);
 }
 
