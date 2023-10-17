@@ -6,7 +6,7 @@
 /*   By: mivendit <mivendit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 16:04:22 by egiubell          #+#    #+#             */
-/*   Updated: 2023/10/17 08:46:51 by mivendit         ###   ########.fr       */
+/*   Updated: 2023/10/17 11:30:38 by mivendit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@
 # define GET_TIME_ERR "TIME ERROR: my_gettimeofday Failed"
 
 /*Structure for global data shared among philosophers*/
-struct s_philos;
+struct	s_philos;
 
 typedef struct s_data
 {
@@ -90,4 +90,3 @@ void				fork_taken(t_philos *philos);
 void				ft_sleep(t_philos *philos);
 void				think(t_philos *philos);
 #endif
-

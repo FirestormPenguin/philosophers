@@ -6,7 +6,7 @@
 /*   By: mivendit <mivendit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 09:25:26 by egiubell          #+#    #+#             */
-/*   Updated: 2023/10/17 10:34:18 by mivendit         ###   ########.fr       */
+/*   Updated: 2023/10/17 11:31:20 by mivendit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	main(int argc, char **argv)
 {
 	t_philos	*philos;
 	t_data		*data;
-	
+
 	data = malloc(sizeof(t_data));
 	args_checks(argc, argv, data);
 	philos = init_struct(data);

@@ -6,7 +6,7 @@
 /*   By: mivendit <mivendit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 09:31:40 by egiubell          #+#    #+#             */
-/*   Updated: 2023/10/17 11:06:44 by mivendit         ###   ########.fr       */
+/*   Updated: 2023/10/17 11:32:40 by mivendit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,10 @@ void	*routine(void *args)
 	return (NULL);
 }
 
-void scroll_philos(t_philos *philos)
+void	scroll_philos(t_philos *philos)
 {
-	while(philos->id != 0)
-	{
+	while (philos->id != 0)
 		philos = philos->next;
-	}
 }
 
 void	init_thread(t_philos *philos)
