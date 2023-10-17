@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   routine.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mivendit <mivendit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 09:31:40 by egiubell          #+#    #+#             */
-/*   Updated: 2023/10/16 16:47:26 by egiubell         ###   ########.fr       */
+/*   Updated: 2023/10/17 08:35:08 by mivendit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void scroll_philos(t_philos *philos)
 	{
 		philos = philos->next;
 	}
-	printf("philos_h id %d\n\n", philos->id);
+	//printf("philos_h id %d\n\n", philos->id);
 }
 
 void	init_thread(t_philos *philos)
