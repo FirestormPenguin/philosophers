@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mivendit <mivendit@student.42.fr>          +#+  +:+       +#+        */
+/*   By: egiubell <egiubell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 09:25:26 by egiubell          #+#    #+#             */
-/*   Updated: 2023/10/17 12:16:24 by mivendit         ###   ########.fr       */
+/*   Updated: 2023/10/18 11:58:09 by egiubell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,11 @@ int	args_checks(int argc, char **argv,	t_data *data)
 	if (argc <= 4 || argc > 6)
 	{
 		printf("%s\n", INPUT_ERR_3);
+		return (1);
+	}
+	else if (ft_isdigit(argc, argv))
+	{
+		printf("%s\n", INPUT_ERR_2);
 		return (1);
 	}
 	else if (parse_arg(data, argc, argv))
