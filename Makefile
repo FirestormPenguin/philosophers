@@ -1,7 +1,19 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: mivendit <marvin@42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/10/18 08:58:08 by mivendit          #+#    #+#              #
+#    Updated: 2023/10/18 08:59:04 by mivendit         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = philo
 INCLUDE = ./include/philo.h
 CC = gcc
-CFLAGS = -Werror -Wall -Wextra -pthread -I./include
+CFLAGS = -Werror -Wall -Wextra -pthread -I./include # -fsanitize=thread
 SRC = $(SRC_DIR)/philo.c $(SRC_DIR)/utils.c $(SRC_DIR)/init_struct.c $(SRC_DIR)/routine.c $(SRC_DIR)/actions.c $(SRC_DIR)/system_tools.c 
 OBJ = $(addprefix $(OBJ_DIR)/,$(notdir $(SRC:%.c=%.o)))
 OBJ_DIR = ./obj
